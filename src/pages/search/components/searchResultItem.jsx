@@ -14,23 +14,25 @@ const SearchResultItem = ({ item }) => {
   const titleRef = useRef(null);
   const [isTruncated, setIsTruncated] = useState(false);
 
+  const { title, nasa_id, location } = item.data[0];
+  const { href } = item.links[0];
+  const { photographer, secondary_creator } = item;
+
   useEffect(() => {
     const titleNode = titleRef.current;
     if (titleNode) {
       setIsTruncated(titleNode.offsetWidth < titleNode.scrollWidth);
     }
-  }, [item.data[0].title]);
+  }, [title]);
 
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card sx={{ height: "100%" }}>
-        <CardActionArea
-          onClick={() => navigate(`/show/${item.data[0].nasa_id}`)}
-        >
+        <CardActionArea onClick={() => navigate(`/show/${nasa_id}`)}>
           <Box
             component="img"
-            src={item.links[0].href}
-            alt={item.data[0].title}
+            src={href}
+            alt={title}
             sx={{
               width: "100%",
               height: "auto",
@@ -63,14 +65,13 @@ const SearchResultItem = ({ item }) => {
                 },
               }}
             >
-              {item.data[0].title || "-"}
+              {title || "-"}
             </Typography>
             <Typography color="text.secondary">
-              Location : {item.data[0].location || "-"}
+              Location : {location || "-"}
             </Typography>
             <Typography color="text.secondary">
-              Photographer:{" "}
-              {item?.photographer || item?.secondary_creator || "-"}
+              Photographer: {photographer || secondary_creator || "-"}
             </Typography>
           </CardContent>
         </CardActionArea>

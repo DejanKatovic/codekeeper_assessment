@@ -23,7 +23,7 @@ const ShowPage = () => {
   const handleBack = () => {
     navigate(-1);
   };
-
+  console.log(item?.date_created);
   return (
     <>
       <Typography
@@ -73,7 +73,7 @@ const ShowPage = () => {
             Keywords: <i>{item?.keywords?.join(", ")}</i>
           </Typography>
           <Typography color="text.secondary" mb={2}>
-            Date Created: {item?.date_created}
+            Date Created: {new Date(item?.date_created).toLocaleString() || "-"}
           </Typography>
           <Button
             onClick={handleBack}

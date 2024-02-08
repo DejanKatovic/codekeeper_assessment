@@ -85,7 +85,7 @@ const SearchPage = () => {
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
       )}
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ mt: isLoading ? 2 : 0 }}>
         {isLoading
           ? Array.from({ length: 6 }).map((_, index) => (
               <Grid key={index} item xs={12} sm={6} md={4}>
